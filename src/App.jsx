@@ -7,6 +7,8 @@ function App() {
 
   const [filteredMovies, setfilteredMovies] = useState(movies)
   const [genreFilter, setgenreFilter] = useState('')
+  const [titleFilter, settitleFilter] = useState('')
+
 
   useEffect(() => {
 
@@ -14,23 +16,42 @@ function App() {
 
   }, [movies, genreFilter])
 
+  useEffect(() => {
+
+    setfilteredMovies(movies.filter(movie => movie.title.toLowerCase().includes(titleFilter.toLowerCase())))
+
+  }, [movies, titleFilter])
+
 
   return (
     <>
       <div className="filter container">
-        <div className="col-6 m-3">
-          <label htmlFor="genreFilter" className="form-label ">Filter for genre</label>
-          <input
-            type="text"
-            className="form-control"
-            name="genreFilter"
-            id="genreFilter"
-            value={genreFilter}
-            placeholder="Select genre"
-            onChange={e => { setgenreFilter(e.target.value) }}
-          />
+        <div className="row">
+          <div className="col-6 mt-3">
+            <label htmlFor="genreFilter" className="form-label ">Filter for genre</label>
+            <input
+              type="text"
+              className="form-control"
+              name="genreFilter"
+              id="genreFilter"
+              value={genreFilter}
+              placeholder="Select genre"
+              onChange={e => { setgenreFilter(e.target.value) }}
+            />
+          </div>
+          <div className="col-6 mt-3">
+            <label htmlFor="titleFilter" className="form-label ">Filter for title</label>
+            <input
+              type="text"
+              className="form-control"
+              name="titleFilter"
+              id="titleFilter"
+              value={titleFilter}
+              placeholder="Select title"
+              onChange={e => { settitleFilter(e.target.value) }}
+            />
+          </div>
         </div>
-
       </div>
 
       <div className="displayList container">
