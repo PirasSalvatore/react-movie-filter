@@ -28,7 +28,6 @@ function App() {
       <div className="filter container">
         <div className="row">
           <div className="col-6 mt-3">
-
             <label htmlFor="genreFilter" className="form-label ">Filter for genre</label>
             <select className="form-select form-select-lg mb-3"
               value={genreFilter}
@@ -48,15 +47,21 @@ function App() {
           </div>
           <div className="col-6 mt-3">
             <label htmlFor="titleFilter" className="form-label ">Filter for title</label>
-            <input
-              type="text"
-              className="form-control"
+            <select className="form-select form-select-lg mb-3"
+              value={titleFilter}
+              onChange={e => { settitleFilter(e.target.value) }}
               name="titleFilter"
               id="titleFilter"
-              value={titleFilter}
-              placeholder="Select title"
-              onChange={e => { settitleFilter(e.target.value) }}
-            />
+            >
+              <option value=''></option>
+              {
+                movies.map((movie, index) => {
+                  return (
+                    <option key={index} value={movie.title}>{movie.title}</option>
+                  )
+                })
+              }
+            </select>
           </div>
         </div>
       </div>
