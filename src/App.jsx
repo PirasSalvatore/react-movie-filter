@@ -28,16 +28,23 @@ function App() {
       <div className="filter container">
         <div className="row">
           <div className="col-6 mt-3">
+
             <label htmlFor="genreFilter" className="form-label ">Filter for genre</label>
-            <input
-              type="text"
-              className="form-control"
+            <select className="form-select form-select-lg mb-3"
+              value={genreFilter}
+              onChange={e => { setgenreFilter(e.target.value) }}
               name="genreFilter"
               id="genreFilter"
-              value={genreFilter}
-              placeholder="Select genre"
-              onChange={e => { setgenreFilter(e.target.value) }}
-            />
+            >
+              <option value=''></option>
+              {
+                movies.map((movie, index) => {
+                  return (
+                    <option key={index} value={movie.genre}>{movie.genre}</option>
+                  )
+                })
+              }
+            </select>
           </div>
           <div className="col-6 mt-3">
             <label htmlFor="titleFilter" className="form-label ">Filter for title</label>
