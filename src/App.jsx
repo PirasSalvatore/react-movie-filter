@@ -5,7 +5,14 @@ import movies from './assets/movies'
 
 function App() {
 
+  const [filteredMovies, setfilteredMovies] = useState(movies)
+  const [genreFilter, setgenreFilter] = useState('')
 
+  useEffect(() => {
+
+    setfilteredMovies(movies.filter(movie => movie.genre.toLowerCase().includes(genreFilter.toLowerCase())))
+
+  }, [movies, genreFilter])
 
 
   return (
@@ -32,7 +39,7 @@ function App() {
 
         <div className="row mt-5 row-gap-2">
           {
-            movies.map((movie, index) => {
+            filteredMovies.map((movie, index) => {
               return (
                 <div key={index} className="col-4 p-1">
                   <div className="card">
